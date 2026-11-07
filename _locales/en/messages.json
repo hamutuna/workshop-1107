@@ -1,0 +1,10 @@
+{
+  "name": {
+    "message": "仮の名前",
+    "description": "Extension name"
+  },
+  "description": {
+    "message": "（概要は企画後に記入）",
+    "description": "Extension description"
+  }
+}
