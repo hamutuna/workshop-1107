@@ -1,10 +1,10 @@
 {
   "name": {
-    "message": "仮の名前",
+    "message": "Nobitto",
     "description": "Extension name"
   },
   "description": {
-    "message": "（概要は企画後に記入）",
+    "message": "Reminds you with a chime and a notification every 15 minutes (or once after 15 minutes) to stand up and stretch.",
     "description": "Extension description"
   }
 }

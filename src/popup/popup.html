@@ -2,22 +2,56 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>仮の名前</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 16px 24px;
-      min-width: 160px;
-      font-family: system-ui, sans-serif;
-      font-size: 16px;
-      color: #1a1a1a;
-      background: #ffffff;
-    }
-  </style>
+  <title>のびっと</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <main>
-    <p id="status" role="status">準備OK</p>
+    <h1>のびっと</h1>
+
+    <p id="status" class="status">読み込み中…</p>
+    <!-- 読み上げ専用（画面には表示しない） -->
+    <p id="announcer" class="visually-hidden" role="status" aria-live="polite"></p>
+    <p id="remaining" class="remaining" hidden></p>
+
+    <!-- Chrome側で通知がオフのときの警告（自動で確認） -->
+    <div id="permission-warning" class="notice warning" hidden>
+      <p><strong>Chromeの通知がオフになっています。</strong></p>
+      <p>音は鳴りますが、通知は表示されません。<br>
+        chrome://settings/content/notifications で許可してください。</p>
+    </div>
+
+    <fieldset>
+      <legend>鳴り方</legend>
+      <label class="choice">
+        <input type="radio" name="mode" value="repeat">
+        繰り返し（<span class="interval">15</span>分ごと）
+      </label>
+      <label class="choice">
+        <input type="radio" name="mode" value="once">
+        1回だけ（<span class="interval">15</span>分後）
+      </label>
+    </fieldset>
+
+    <div class="actions">
+      <button type="button" id="toggle" class="primary">開始</button>
+      <button type="button" id="check" class="secondary">動作チェック</button>
+    </div>
+
+    <!-- 開始時・動作チェック時に出す確認の案内 -->
+    <section id="check-panel" class="notice" hidden aria-labelledby="check-title">
+      <h2 id="check-title">音と通知は届きましたか？</h2>
+      <p id="check-error" class="error" hidden></p>
+      <p>届かない場合は、Macで次を確認してください。</p>
+      <ul>
+        <li><strong>通知が見えない：</strong>「システム設定」→「通知」→「Google Chrome」で通知を許可。集中モードはオフに</li>
+        <li><strong>音が聞こえない：</strong>音量・ミュート・音の出力先（イヤホンなど）</li>
+      </ul>
+      <button type="button" id="check-ok" class="secondary small">届いた（閉じる）</button>
+    </section>
+
+    <p class="hint">ショートカット：<kbd id="shortcut">未設定</kbd><br>
+      変更は chrome://extensions/shortcuts から</p>
   </main>
   <script src="popup.js"></script>
 </body>
